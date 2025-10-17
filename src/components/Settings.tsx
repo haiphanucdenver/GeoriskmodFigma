@@ -25,7 +25,6 @@ export function Settings() {
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [riskThreshold, setRiskThreshold] = useState([75]);
   const [mapTheme, setMapTheme] = useState("satellite");
-  const [dataRetention, setDataRetention] = useState("90");
 
   const handleSaveSettings = () => {
     // In a real app, save settings to backend
@@ -38,7 +37,6 @@ export function Settings() {
     setAutoRefresh(false);
     setRiskThreshold([75]);
     setMapTheme("satellite");
-    setDataRetention("90");
   };
 
   return (
@@ -118,21 +116,6 @@ export function Settings() {
                   </SelectContent>
                 </Select>
               </div>
-
-              <div>
-                <label className="block text-white mb-3">Language</label>
-                <Select defaultValue="en">
-                  <SelectTrigger className="bg-slate-600 border-slate-500 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-600 border-slate-500">
-                    <SelectItem value="en">English</SelectItem>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">Chinese</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
             </div>
           </Card>
 
@@ -204,22 +187,6 @@ export function Settings() {
             </div>
 
             <div className="space-y-6">
-              <div>
-                <label className="block text-white mb-3">Data Retention Period</label>
-                <Select value={dataRetention} onValueChange={setDataRetention}>
-                  <SelectTrigger className="bg-slate-600 border-slate-500 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-600 border-slate-500">
-                    <SelectItem value="30">30 Days</SelectItem>
-                    <SelectItem value="90">90 Days</SelectItem>
-                    <SelectItem value="180">6 Months</SelectItem>
-                    <SelectItem value="365">1 Year</SelectItem>
-                    <SelectItem value="unlimited">Unlimited</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white">Two-Factor Authentication</p>
@@ -280,21 +247,11 @@ export function Settings() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white">Satellite imagery from NASA's Earthdata</p>
-                  <p className="text-sm text-slate-400">High-resolution maps</p>
+                  <p className="text-white">AWS Database</p>
+                  <p className="text-sm text-slate-400">Cloud database storage</p>
                 </div>
-                <Badge variant="secondary" className="bg-yellow-600 text-yellow-100">
-                  Limited
-                </Badge>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-white">Emergency services from the local government</p>
-                  <p className="text-sm text-slate-400">Alert system integration</p>
-                </div>
-                <Badge variant="destructive" className="bg-red-600">
-                  Disconnected
+                <Badge variant="default" className="bg-green-600">
+                  Connected
                 </Badge>
               </div>
 
@@ -330,14 +287,6 @@ export function Settings() {
               <Input
                 type="password"
                 placeholder="••••••••••••••••"
-                className="bg-slate-600 border-slate-500 text-white"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Alert System URL</label>
-              <Input
-                placeholder="https://alerts.example.com/api"
                 className="bg-slate-600 border-slate-500 text-white"
               />
             </div>

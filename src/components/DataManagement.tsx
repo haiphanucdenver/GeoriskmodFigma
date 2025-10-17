@@ -19,8 +19,17 @@ import {
   AlertTriangle,
   Calendar,
 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { toast } from "sonner@2.0.3";
 
 export function DataManagement() {
+  const handleSubmitData = () => {
+    toast.success("AI Processing...", {
+      description: "Your data is being processed by AI",
+      duration: 3000,
+    });
+  };
+
   const datasets = [
     {
       id: 1,
@@ -64,22 +73,22 @@ export function DataManagement() {
     {
       name: "USGS Elevation Service",
       status: "Connected",
-      lastSync: "2024-03-15 14:30",
+      lastUpload: "2024-03-15 14:30",
     },
     {
       name: "NOAA Weather Data",
       status: "Connected",
-      lastSync: "2024-03-15 12:00",
+      lastUpload: "2024-03-15 12:00",
     },
     {
       name: "Local Government GIS",
       status: "Disconnected",
-      lastSync: "2024-03-10 09:15",
+      lastUpload: "2024-03-10 09:15",
     },
     {
       name: "Emergency Services API",
       status: "Connected",
-      lastSync: "2024-03-15 13:45",
+      lastUpload: "2024-03-15 13:45",
     },
   ];
 
@@ -149,6 +158,43 @@ export function DataManagement() {
               placeholder="Search datasets..."
               className="w-64 bg-slate-700 border-slate-600 text-white placeholder:text-gray-400"
             />
+            <Select defaultValue="all">
+              <SelectTrigger className="w-40 bg-slate-700 border-slate-600 text-white">
+                <SelectValue placeholder="Time Period" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-700 border-slate-600">
+                <SelectItem value="all">All Time</SelectItem>
+                <SelectItem value="today">Today</SelectItem>
+                <SelectItem value="week">Last Week</SelectItem>
+                <SelectItem value="month">Last Month</SelectItem>
+                <SelectItem value="year">Last Year</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="all-types">
+              <SelectTrigger className="w-40 bg-slate-700 border-slate-600 text-white">
+                <SelectValue placeholder="Type" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-700 border-slate-600">
+                <SelectItem value="all-types">All Types</SelectItem>
+                <SelectItem value="elevation">Elevation Data</SelectItem>
+                <SelectItem value="event">Event History</SelectItem>
+                <SelectItem value="demographics">Demographics</SelectItem>
+                <SelectItem value="infrastructure">Infrastructure</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="all-files">
+              <SelectTrigger className="w-40 bg-slate-700 border-slate-600 text-white">
+                <SelectValue placeholder="File Type" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-700 border-slate-600">
+                <SelectItem value="all-files">All Files</SelectItem>
+                <SelectItem value="geotiff">GeoTIFF</SelectItem>
+                <SelectItem value="csv">CSV</SelectItem>
+                <SelectItem value="json">JSON</SelectItem>
+                <SelectItem value="shapefile">Shapefile</SelectItem>
+                <SelectItem value="kml">KML</SelectItem>
+              </SelectContent>
+            </Select>
             <Button className="bg-blue-600 hover:bg-blue-700">
               Calculate Risk
             </Button>
@@ -207,7 +253,7 @@ export function DataManagement() {
                   2h
                 </p>
                 <p className="text-sm text-gray-400">
-                  Last Sync
+                  Last Upload
                 </p>
               </div>
             </div>
@@ -555,7 +601,10 @@ export function DataManagement() {
 
           {/* Submit Button */}
           <div className="text-center">
-            <Button className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-3">
+            <Button 
+              onClick={handleSubmitData}
+              className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-3"
+            >
               Submit Data
             </Button>
           </div>
@@ -676,7 +725,7 @@ export function DataManagement() {
                       {source.name}
                     </p>
                     <p className="text-sm text-gray-400">
-                      Last sync: {source.lastSync}
+                      Last Upload: {source.lastUpload}
                     </p>
                   </div>
                 </div>

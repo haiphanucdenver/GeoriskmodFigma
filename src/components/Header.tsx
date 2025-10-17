@@ -23,7 +23,7 @@ export function Header({
   const navItems = [
     { id: "map", label: "Map" },
     { id: "data", label: "Data Management" },
-    { id: "reports", label: "Reports" },
+    // { id: "reports", label: "Reports" },
     { id: "settings", label: "Setting" },
 
     //{ id: "flowchart", label: "Flow Chart" }
@@ -35,10 +35,10 @@ export function Header({
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">
-              B
+              G
             </span>
           </div>
-          <span className="text-xl font-semibold">BorroRisk</span>
+          <span className="text-xl font-semibold">GEORISKMOD</span>
         </div>
 
         <nav className="flex items-center gap-6">

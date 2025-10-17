@@ -8,6 +8,7 @@ import { Account } from "./components/Account";
 import { Settings } from "./components/Settings";
 import { Reports } from "./components/Reports";
 import { Login } from "./components/Login";
+import { Toaster } from "./components/ui/sonner";
 
 import { FlowChart } from "./components/FlowChart";
 
@@ -37,11 +38,11 @@ export default function App() {
         return <Account onLogout={handleLogout} />;
       case "settings":
         return <Settings />;
-      case "reports":
-        return <Reports />;
+      // case "reports":
+      //   return <Reports />;
 
-      case "flowchart":
-        return <FlowChart />;
+      // case "flowchart":
+      //   return <FlowChart />;
       case "map":
       default:
         return (
@@ -64,6 +65,7 @@ export default function App() {
       <div className="flex flex-1">
         {renderMainContent()}
       </div>
+      <Toaster />
     </div>
   );
 }
