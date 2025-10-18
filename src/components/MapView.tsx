@@ -1,5 +1,8 @@
+
 //import mapImage from 'figma:asset/6444ffb02271b17f771e6d5b5950c80f54c50e1d.png';
 import mapImage from '../assets/image.jpeg';
+
+
 
 export function MapView() {
   return (
